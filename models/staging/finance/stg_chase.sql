@@ -9,9 +9,9 @@ final as (
         "Description" as description,
         "Category" as category,
         "Type" as type,
-        "Amount" as amount,
+        "Amount"::numeric as amount,
         "Memo" as memo
-        
+
     from source
 )
 
