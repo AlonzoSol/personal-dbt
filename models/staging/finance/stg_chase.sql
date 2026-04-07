@@ -4,8 +4,8 @@ with source as (
 
 final as (
     select
-        "Transaction Date" as transaction_date,
-        "Post Date" as post_date,
+        "Transaction Date"::date as transaction_date,
+        "Post Date"::date as post_date,
         "Description" as description,
         "Category" as category,
         "Type" as type,
