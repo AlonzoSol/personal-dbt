@@ -4,9 +4,9 @@ with source as (
 
 final as (
     select
-        "Run Date" as date,
+        "Run Date"::timestamptz as timestamp_utc,
         "Action" as transaction,
-        "Amount ($)" as amount,
+        "Amount ($)"::numeric as amount,
         "Cash Balance ($)" as balance
     
     from source
