@@ -18,13 +18,13 @@ typed as (
 indexed as (
     select
         *,
-        row_number(transaction_date, description, amount) as index
+        row_number() OVER (partition by transaction_date, description, amount) as index
     from typed
 ),
 
 final as (
     select
-        {{ dbt_utils.generate_surrogate_key(['transaction_date', 'description', 'amount']) }} as primary_key,
+        {{ dbt_utils.generate_surrogate_key(['transaction_date', 'description', 'amount', 'index']) }} as primary_key,
         *
     from indexed
 )
