@@ -15,11 +15,18 @@ typed as (
     from source
 ),
 
+indexed as (
+    select
+        *,
+        row_number(transaction_date, description, amount) as index
+    from typed
+),
+
 final as (
     select
         {{ dbt_utils.generate_surrogate_key(['transaction_date', 'description', 'amount']) }} as primary_key,
         *
-    from typed
+    from indexed
 )
 
 select * from final
