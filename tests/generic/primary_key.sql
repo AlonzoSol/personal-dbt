@@ -1,7 +1,7 @@
-{% test primary_key(model, column) %}
+{% test primary_key(model, column_name) %}
 
 with validation as (
-    select {{ column }} as primary_key
+    select {{ column_name }} as primary_key
     from {{ model }}
 ),
 

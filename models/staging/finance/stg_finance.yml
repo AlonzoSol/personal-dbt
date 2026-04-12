@@ -3,12 +3,11 @@ models:
     columns:
       - name: primary_key
         data_tests:
-          - unique
-          - not_null
+          - primary_key
 
   - name: stg_fidelity
     columns:
       - name: primary_key
         data_tests:
           - unique
-          - not_null
+          - primary_key
