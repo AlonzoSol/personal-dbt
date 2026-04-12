@@ -2,7 +2,7 @@ with source as (
     select * from {{ ref('chase') }}
 ),
 
-final as (
+typed as (
     select
         "Transaction Date"::date as transaction_date,
         "Post Date"::date as post_date,
@@ -13,6 +13,13 @@ final as (
         "Memo" as memo
 
     from source
+),
+
+final as (
+    select
+        {{ dbt_utils.generate_surrogate_key(['transaction_date', 'description', 'amount']) }} as primary_key,
+        *
+    from typed
 )
 
 select * from final
