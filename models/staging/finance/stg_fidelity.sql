@@ -20,7 +20,10 @@ indexed as (
 ),
 
 final as (
-
+    select
+        {{ dbt_utils.generate_surrogate_key(['transaction_date', 'transaction', 'amount', 'index']) }} as primary_key,
+        *
+    from indexed
 )
 
 select * from final
